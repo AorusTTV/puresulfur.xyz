@@ -69,9 +69,7 @@ export const BattleConfigForm: React.FC<Props> = ({
   return (
     <div className="space-y-6">
       {/* DEBUG line — delete once you see it render */}
-      <div style={{ color: 'red', textAlign: 'center' }}>
-        *** loaded BattleConfigForm ***
-      </div>
+    
 
       {/* ① Crate grid ---------------------------------------------------- */}
       <CrateGrid onAddToBattle={addToBasket} onCrateSelect={() => {}} />
