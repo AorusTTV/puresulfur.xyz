@@ -24,13 +24,16 @@ export const EnhancedPlayerCard: React.FC<EnhancedPlayerCardProps> = ({
 
   return (
     <Card 
+      style={{
+        animation: isWinner ? `pulse-ring 1s infinite` : `none`
+      }}
       className={`
         relative overflow-hidden border-2 transition-all duration-500 
         ${isWinner 
-          ? 'border-yellow-500 shadow-lg shadow-yellow-500/30 animate-pulse' 
+          ? 'border-yellow-500 shadow-lg shadow-yellow-500/30' 
           : 'border-border/50 hover:border-primary/50'
         }
-        ${battleStatus === 'rolling' ? 'animate-pulse' : ''}
+        ${battleStatus === 'rolling' ? '' : ''}
       `}
     >
       {/* Winner Crown */}
@@ -105,7 +108,7 @@ export const EnhancedPlayerCard: React.FC<EnhancedPlayerCardProps> = ({
       
       {/* Glow Effect for Winner */}
       {isWinner && (
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-yellow-500/10 via-orange-500/10 to-yellow-500/10 animate-pulse" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-yellow-500/10 via-orange-500/10 to-yellow-500/10" />
       )}
     </Card>
   );

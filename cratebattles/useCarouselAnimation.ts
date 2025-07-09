@@ -54,7 +54,7 @@ export const useCarouselAnimation = ({
     const finalDistance = (winningItemIndex * itemWidth) + (itemWidth / 2) - centerPosition;
     
     const startPosition = 0;
-    const animationDuration = 3200;
+    const animationDuration = 6000;
     startTimeRef.current = undefined;
     
     const animate = (currentTime: number) => {

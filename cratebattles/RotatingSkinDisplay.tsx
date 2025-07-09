@@ -1,10 +1,11 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { rustCrates, RustItem } from './rustCrateData';
 import { useCarouselAnimation } from './useCarouselAnimation';
 import { CarouselContainer } from './CarouselContainer';
 import { CarouselSelectionIndicator } from './CarouselSelectionIndicator';
 import { CarouselDebugOverlay } from './CarouselDebugOverlay';
+
 
 interface RotatingSkinDisplayProps {
   crateId: string;
@@ -14,7 +15,7 @@ interface RotatingSkinDisplayProps {
   serverWinningItem?: RustItem | null;
 }
 
-export const RotatingSkinDisplay: React.FC<RotatingSkinDisplayProps> = ({ 
+export const RotatingSkinDisplay: React.FC<RotatingSkinDisplayProps> = ({
   crateId, 
   isAnimating = false,
   onAnimationComplete,
@@ -55,13 +56,14 @@ export const RotatingSkinDisplay: React.FC<RotatingSkinDisplayProps> = ({
 
   return (
     <div 
-      className="relative w-full h-20 overflow-hidden bg-gradient-to-r from-card/50 to-secondary/50 rounded-lg border border-border/50"
+      className="relative w-full h-28 overflow-hidden from-card/50 to-secondary/50"
       style={{
         contain: 'layout style paint',
-        willChange: isRolling ? 'auto' : 'auto'
+        willChange: isRolling ? 'auto' : 'auto',
+        animation: null != finalItem ? `horizontal-shaking 0.2s 1` : 'none'
       }}
     >
-      <CarouselSelectionIndicator showWinningDot={showWinningDot} />
+      {/*<CarouselSelectionIndicator showWinningDot={showWinningDot} />*/}
       
       {reelItems.length > 0 && (
         <CarouselContainer
@@ -69,14 +71,15 @@ export const RotatingSkinDisplay: React.FC<RotatingSkinDisplayProps> = ({
           translateX={translateX}
           isRolling={isRolling}
           itemWidth={itemWidth}
+          containerWidth={containerWidth}
         />
       )}
       
       {/* Fade effects */}
-      <div className="absolute left-0 top-0 w-8 h-full bg-gradient-to-r from-background to-transparent pointer-events-none" />
-      <div className="absolute right-0 top-0 w-8 h-full bg-gradient-to-l from-background to-transparent pointer-events-none" />
+      <div className="absolute left-0 top-0 w-4 h-full bg-gradient-to-r from-stone-900 to-transparent pointer-events-none" />
+      <div className="absolute right-0 top-0 w-4 h-full bg-gradient-to-l from-stone-900 to-transparent pointer-events-none" />
       
-      <CarouselDebugOverlay isRolling={isRolling} finalItem={finalItem} />
+      {/* <CarouselDebugOverlay isRolling={isRolling} finalItem={finalItem} />*/}
     </div>
   );
 };

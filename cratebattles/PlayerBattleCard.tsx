@@ -63,7 +63,7 @@ export const PlayerBattleCard: React.FC<PlayerBattleCardProps> = ({
 
   const renderContent = () => {
     return (
-      <div className="relative h-24">
+      <div className="relative h-28">
         {battleData?.crates?.[0]?.crate && (
           <RotatingSkinDisplay 
             crateId={battleData.crates[0].crate.id}
@@ -119,16 +119,19 @@ export const PlayerBattleCard: React.FC<PlayerBattleCardProps> = ({
         {renderContent()}
 
         {/* Final Result - Use single source of truth */}
-        {battleStatus === 'finished' && getAuthoritativeItem() && (
-          <div className="mt-4 text-center">
-            <div className="text-lg font-bold text-primary">
-              ${getAuthoritativeItem()!.value.toFixed(2)}
-            </div>
-            <div className="text-sm text-muted-foreground">
-              {getAuthoritativeItem()!.name}
-            </div>
+        
+        <div className="mt-4 text-center"
+        style={{
+          opacity: battleStatus === 'finished' && getAuthoritativeItem() ? 1 : 0,
+          transition: `opacity 1s ease`
+        }}>
+          <div className="text-lg font-bold text-primary">
+            $ {getAuthoritativeItem() ? getAuthoritativeItem()!.value.toFixed(2) : 0}
           </div>
-        )}
+          <div className="text-sm text-muted-foreground">
+            {getAuthoritativeItem() ? getAuthoritativeItem()!.name : ' '}
+          </div>
+        </div>
       </EnhancedPlayerCard>
     </div>
   );
