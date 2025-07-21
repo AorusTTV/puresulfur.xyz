@@ -1,0 +1,219 @@
+
+[
+  {
+    "id": "ghostly_graves",
+    "name": "Ghostly Graves",
+    "price": 0.20,
+    "category": ["popular", "high_risk"],
+    "rarity": "rare",
+    "image": "/lovable-uploads/a39de535-94e1-4e31-941e-48138964331b.png",
+    "items": [
+      { "name": "Skull Hoodie", "chance": 0.05, "img": "/lovable-uploads/679cea75-a886-4a41-8e30-7f6d45bd21a0.png" },
+      { "name": "Bone Club", "chance": 0.15, "img": "/lovable-uploads/fc5e7800-3c86-4b0f-924a-7330797a46a1.png" }
+    ]
+  },
+  {
+    "id": "rusty_angelo",
+    "name": "Rusty Angelo",
+    "price": 0.20,
+    "category": ["new", "low_risk"],
+    "rarity": "common",
+    "image": "/lovable-uploads/07db274a-c962-47ff-80ed-79d69e0d825d.png",
+    "items": [
+      { "name": "Metal Facemask", "chance": 0.10, "img": "/lovable-uploads/ee5e9966-bbd3-4cd8-bf64-07171e3cbeed.png" },
+      { "name": "Wood", "chance": 0.30, "img": "/lovable-uploads/ffa42209-157f-414e-94f7-ceceeeac38b2.png" }
+    ]
+  },
+  {
+    "id": "dreamer",
+    "name": "Dreamer",
+    "price": 0.25,
+    "category": ["popular", "low_risk"],
+    "rarity": "common",
+    "image": "/lovable-uploads/0d317b02-f36f-4b24-a49e-cef757628cca.png",
+    "items": [
+      { "name": "Tempered Bow", "chance": 0.12, "img": "/lovable-uploads/fc5e7800-3c86-4b0f-924a-7330797a46a1.png" },
+      { "name": "Wood", "chance": 0.25, "img": "/lovable-uploads/ffa42209-157f-414e-94f7-ceceeeac38b2.png" }
+    ]
+  },
+  {
+    "id": "christmas_luck",
+    "name": "Christmas Luck",
+    "price": 0.34,
+    "category": ["popular", "high_risk"],
+    "rarity": "rare",
+    "image": "/lovable-uploads/4aee683f-0ccb-44a5-ba80-37eb1f2ccb9f.png",
+    "items": [
+      { "name": "Red Christmas Grenade", "chance": 0.08, "img": "/lovable-uploads/b5e40e81-fe3c-45c0-b4ba-f63e562cb986.png" },
+      { "name": "Fire Jacket", "chance": 0.02, "img": "/lovable-uploads/679cea75-a886-4a41-8e30-7f6d45bd21a0.png" }
+    ]
+  },
+  {
+    "id": "valentines",
+    "name": "Valentine's",
+    "price": 0.40,
+    "category": ["new", "high_risk"],
+    "rarity": "epic",
+    "image": "/lovable-uploads/f20ebdb8-3792-4367-a684-0a6283a6efe5.png",
+    "items": [
+      { "name": "Crime Bag", "chance": 0.06, "img": "/lovable-uploads/ee5e9966-bbd3-4cd8-bf64-07171e3cbeed.png" },
+      { "name": "Tempered Bow", "chance": 0.14, "img": "/lovable-uploads/fc5e7800-3c86-4b0f-924a-7330797a46a1.png" }
+    ]
+  },
+  {
+    "id": "ten_percent_bunny",
+    "name": "10% Bunny",
+    "price": 0.40,
+    "category": ["cheap", "low_risk"],
+    "rarity": "common",
+    "image": "/lovable-uploads/f5b7e033-447c-4430-ba29-c671f5020425.png",
+    "items": [
+      { "name": "Wood", "chance": 0.40, "img": "/lovable-uploads/ffa42209-157f-414e-94f7-ceceeeac38b2.png" },
+      { "name": "Red Christmas Grenade", "chance": 0.10, "img": "/lovable-uploads/b5e40e81-fe3c-45c0-b4ba-f63e562cb986.png" }
+    ]
+  },
+  {
+    "id": "recess_crate",
+    "name": "Recess Crate",
+    "price": 0.40,
+    "category": ["popular", "cheap"],
+    "rarity": "common",
+    "image": "/lovable-uploads/a39de535-94e1-4e31-941e-48138964331b.png",
+    "items": [
+      { "name": "Bone Club", "chance": 0.18, "img": "/lovable-uploads/fc5e7800-3c86-4b0f-924a-7330797a46a1.png" },
+      { "name": "Wood", "chance": 0.35, "img": "/lovable-uploads/ffa42209-157f-414e-94f7-ceceeeac38b2.png" }
+    ]
+  },
+  {
+    "id": "one_percent_spacesuit",
+    "name": "1% Spacesuit",
+    "price": 0.40,
+    "category": ["high_risk", "cheap"],
+    "rarity": "rare",
+    "image": "/lovable-uploads/07db274a-c962-47ff-80ed-79d69e0d825d.png",
+    "items": [
+      { "name": "Fire Jacket", "chance": 0.01, "img": "/lovable-uploads/679cea75-a886-4a41-8e30-7f6d45bd21a0.png" },
+      { "name": "Wood", "chance": 0.45, "img": "/lovable-uploads/ffa42209-157f-414e-94f7-ceceeeac38b2.png" }
+    ]
+  },
+  {
+    "id": "big_red",
+    "name": "Big Red",
+    "price": 0.40,
+    "category": ["popular", "cheap"],
+    "rarity": "common",
+    "image": "/lovable-uploads/0d317b02-f36f-4b24-a49e-cef757628cca.png",
+    "items": [
+      { "name": "Red Christmas Grenade", "chance": 0.20, "img": "/lovable-uploads/b5e40e81-fe3c-45c0-b4ba-f63e562cb986.png" },
+      { "name": "Wood", "chance": 0.30, "img": "/lovable-uploads/ffa42209-157f-414e-94f7-ceceeeac38b2.png" }
+    ]
+  },
+  {
+    "id": "gun",
+    "name": "Gun",
+    "price": 0.50,
+    "category": ["high_risk"],
+    "rarity": "epic",
+    "image": "/lovable-uploads/4aee683f-0ccb-44a5-ba80-37eb1f2ccb9f.png",
+    "items": [
+      { "name": "Tempered Bow", "chance": 0.25, "img": "/lovable-uploads/fc5e7800-3c86-4b0f-924a-7330797a46a1.png" },
+      { "name": "Crime Bag", "chance": 0.05, "img": "/lovable-uploads/ee5e9966-bbd3-4cd8-bf64-07171e3cbeed.png" }
+    ]
+  },
+  {
+    "id": "birthday",
+    "name": "Birthday",
+    "price": 0.60,
+    "category": ["new", "high_risk"],
+    "rarity": "epic",
+    "image": "/lovable-uploads/f20ebdb8-3792-4367-a684-0a6283a6efe5.png",
+    "items": [
+      { "name": "Fire Jacket", "chance": 0.03, "img": "/lovable-uploads/679cea75-a886-4a41-8e30-7f6d45bd21a0.png" },
+      { "name": "Red Christmas Grenade", "chance": 0.15, "img": "/lovable-uploads/b5e40e81-fe3c-45c0-b4ba-f63e562cb986.png" }
+    ]
+  },
+  {
+    "id": "summer_bonanza",
+    "name": "Summer Bonanza",
+    "price": 0.60,
+    "category": ["popular", "high_risk"],
+    "rarity": "epic",
+    "image": "/lovable-uploads/f5b7e033-447c-4430-ba29-c671f5020425.png",
+    "items": [
+      { "name": "Crime Bag", "chance": 0.08, "img": "/lovable-uploads/ee5e9966-bbd3-4cd8-bf64-07171e3cbeed.png" },
+      { "name": "Tempered Bow", "chance": 0.20, "img": "/lovable-uploads/fc5e7800-3c86-4b0f-924a-7330797a46a1.png" }
+    ]
+  },
+  {
+    "id": "airdrop_crate",
+    "name": "Airdrop Crate",
+    "price": 0.70,
+    "category": ["high_risk"],
+    "rarity": "rare",
+    "image": "/lovable-uploads/a39de535-94e1-4e31-941e-48138964331b.png",
+    "items": [
+      { "name": "Fire Jacket", "chance": 0.04, "img": "/lovable-uploads/679cea75-a886-4a41-8e30-7f6d45bd21a0.png" },
+      { "name": "Crime Bag", "chance": 0.12, "img": "/lovable-uploads/ee5e9966-bbd3-4cd8-bf64-07171e3cbeed.png" }
+    ]
+  },
+  {
+    "id": "desert_crate",
+    "name": "Desert Crate",
+    "price": 0.70,
+    "category": ["high_risk"],
+    "rarity": "rare",
+    "image": "/lovable-uploads/07db274a-c962-47ff-80ed-79d69e0d825d.png",
+    "items": [
+      { "name": "Fire Jacket", "chance": 0.03, "img": "/lovable-uploads/679cea75-a886-4a41-8e30-7f6d45bd21a0.png" },
+      { "name": "Tempered Bow", "chance": 0.18, "img": "/lovable-uploads/fc5e7800-3c86-4b0f-924a-7330797a46a1.png" }
+    ]
+  },
+  {
+    "id": "junk_pile",
+    "name": "Junk Pile",
+    "price": 0.75,
+    "category": ["cheap"],
+    "rarity": "common",
+    "image": "/lovable-uploads/0d317b02-f36f-4b24-a49e-cef757628cca.png",
+    "items": [
+      { "name": "Wood", "chance": 0.50, "img": "/lovable-uploads/ffa42209-157f-414e-94f7-ceceeeac38b2.png" },
+      { "name": "Red Christmas Grenade", "chance": 0.25, "img": "/lovable-uploads/b5e40e81-fe3c-45c0-b4ba-f63e562cb986.png" }
+    ]
+  },
+  {
+    "id": "easter_frenzy",
+    "name": "Easter Frenzy",
+    "price": 0.75,
+    "category": ["new"],
+    "rarity": "rare",
+    "image": "/lovable-uploads/4aee683f-0ccb-44a5-ba80-37eb1f2ccb9f.png",
+    "items": [
+      { "name": "Crime Bag", "chance": 0.10, "img": "/lovable-uploads/ee5e9966-bbd3-4cd8-bf64-07171e3cbeed.png" },
+      { "name": "Tempered Bow", "chance": 0.22, "img": "/lovable-uploads/fc5e7800-3c86-4b0f-924a-7330797a46a1.png" }
+    ]
+  },
+  {
+    "id": "one_percent_banana_eoka",
+    "name": "1% Banana Eoka",
+    "price": 1.00,
+    "category": ["high_risk"],
+    "rarity": "legendary",
+    "image": "/lovable-uploads/f20ebdb8-3792-4367-a684-0a6283a6efe5.png",
+    "items": [
+      { "name": "Fire Jacket", "chance": 0.01, "img": "/lovable-uploads/679cea75-a886-4a41-8e30-7f6d45bd21a0.png" },
+      { "name": "Crime Bag", "chance": 0.15, "img": "/lovable-uploads/ee5e9966-bbd3-4cd8-bf64-07171e3cbeed.png" }
+    ]
+  },
+  {
+    "id": "coinflip_crate",
+    "name": "Coinflip Crate",
+    "price": 1.00,
+    "category": ["popular", "high_risk"],
+    "rarity": "legendary",
+    "image": "/lovable-uploads/f5b7e033-447c-4430-ba29-c671f5020425.png",
+    "items": [
+      { "name": "Fire Jacket", "chance": 0.02, "img": "/lovable-uploads/679cea75-a886-4a41-8e30-7f6d45bd21a0.png" },
+      { "name": "Crime Bag", "chance": 0.20, "img": "/lovable-uploads/ee5e9966-bbd3-4cd8-bf64-07171e3cbeed.png" }
+    ]
+  }
+]

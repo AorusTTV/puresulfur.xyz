@@ -1,0 +1,99 @@
+
+global:
+  smtp_smarthost: 'localhost:587'
+  smtp_from: 'alerts@rustskins.com'
+
+route:
+  group_by: ['alertname', 'cluster', 'service']
+  group_wait: 10s
+  group_interval: 10s
+  repeat_interval: 1h
+  receiver: 'default-receiver'
+  routes:
+  - match:
+      severity: critical
+    receiver: 'critical-alerts'
+  - match:
+      alertname: 'High5xxErrorRate'
+    receiver: 'error-rate-alerts'
+  - match:
+      alertname: 'AuthenticationFailureSpike'
+    receiver: 'security-alerts'
+
+receivers:
+- name: 'default-receiver'
+  email_configs:
+  - to: 'dev-team@rustskins.com'
+    subject: '[ALERT] {{ .GroupLabels.alertname }}'
+    body: |
+      {{ range .Alerts }}
+      Alert: {{ .Annotations.summary }}
+      Description: {{ .Annotations.description }}
+      Instance: {{ .Labels.instance }}
+      Severity: {{ .Labels.severity }}
+      Time: {{ .StartsAt }}
+      {{ end }}
+
+- name: 'critical-alerts'
+  email_configs:
+  - to: 'security@rustskins.com,ops@rustskins.com'
+    subject: '[CRITICAL] {{ .GroupLabels.alertname }}'
+    body: |
+      🚨 CRITICAL ALERT 🚨
+      {{ range .Alerts }}
+      Alert: {{ .Annotations.summary }}
+      Description: {{ .Annotations.description }}
+      Instance: {{ .Labels.instance }}
+      Time: {{ .StartsAt }}
+      {{ end }}
+  slack_configs:
+  - api_url: '${SLACK_WEBHOOK_URL}'
+    channel: '#security-alerts'
+    title: 'Critical Security Alert'
+    text: |
+      🚨 CRITICAL: {{ range .Alerts }}{{ .Annotations.summary }}{{ end }}
+      Instance: {{ range .Alerts }}{{ .Labels.instance }}{{ end }}
+    actions:
+    - type: button
+      text: 'View Grafana'
+      url: '${GRAFANA_URL}/d/security-dashboard'
+
+- name: 'error-rate-alerts'
+  email_configs:
+  - to: 'ops@rustskins.com'
+    subject: '[ERROR RATE] High 5xx Error Rate Detected'
+    body: |
+      ⚠️  High error rate detected
+      Current 5xx error rate exceeds 5% threshold
+      Please investigate immediately.
+      
+      Grafana Dashboard: ${GRAFANA_URL}/d/security-dashboard
+  slack_configs:
+  - api_url: '${SLACK_WEBHOOK_URL}'
+    channel: '#ops-alerts'
+    title: 'High Error Rate Alert'
+    text: '⚠️ 5xx error rate above threshold - investigate immediately'
+
+- name: 'security-alerts'
+  email_configs:
+  - to: 'security@rustskins.com'
+    subject: '[SECURITY] Authentication Failure Spike'
+    body: |
+      🔒 Security Alert: High authentication failure rate
+      Multiple failed login attempts detected in short time period.
+      Possible brute force attack in progress.
+      
+      Time: {{ range .Alerts }}{{ .StartsAt }}{{ end }}
+      Threshold exceeded: >20 failures in 15 minutes
+  slack_configs:
+  - api_url: '${SLACK_WEBHOOK_URL}'
+    channel: '#security-alerts'
+    title: 'Authentication Security Alert'
+    text: '🔒 Possible brute force attack - high auth failure rate detected'
+
+inhibit_rules:
+- source_match:
+    severity: 'critical'
+  target_match:
+    severity: 'warning'
+  equal: ['alertname', 'cluster', 'service']

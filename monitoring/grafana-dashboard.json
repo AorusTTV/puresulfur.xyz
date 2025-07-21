@@ -1,0 +1,198 @@
+
+{
+  "dashboard": {
+    "id": null,
+    "title": "Rust Skins Security & Application Monitoring",
+    "tags": ["security", "gambling", "monitoring", "logging"],
+    "timezone": "UTC",
+    "refresh": "30s",
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "panels": [
+      {
+        "id": 1,
+        "title": "Authentication Events (Last Hour)",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "sum(increase(auth_events_total[1h]))",
+            "legendFormat": "Total Auth Events"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "thresholds": {
+              "steps": [
+                {"color": "green", "value": null},
+                {"color": "yellow", "value": 100},
+                {"color": "red", "value": 500}
+              ]
+            }
+          }
+        },
+        "gridPos": {"h": 4, "w": 6, "x": 0, "y": 0}
+      },
+      {
+        "id": 2,
+        "title": "Game Events (Last Hour)",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "sum(increase(game_events_total[1h]))",
+            "legendFormat": "Total Game Events"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "thresholds": {
+              "steps": [
+                {"color": "green", "value": null},
+                {"color": "yellow", "value": 1000},
+                {"color": "red", "value": 5000}
+              ]
+            }
+          }
+        },
+        "gridPos": {"h": 4, "w": 6, "x": 6, "y": 0}
+      },
+      {
+        "id": 3,
+        "title": "Error Rate (5xx responses)",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "sum(rate(http_requests_total{status=~\"5..\"}[5m])) / sum(rate(http_requests_total[5m])) * 100",
+            "legendFormat": "5xx Error Rate %"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "percent",
+            "color": {
+              "mode": "thresholds"
+            },
+            "thresholds": {
+              "steps": [
+                {"color": "green", "value": null},
+                {"color": "yellow", "value": 1},
+                {"color": "red", "value": 5}
+              ]
+            }
+          }
+        },
+        "gridPos": {"h": 4, "w": 6, "x": 12, "y": 0},
+        "alert": {
+          "name": "High 5xx Error Rate",
+          "conditions": [
+            {
+              "query": {"queryType": "", "refId": "A"},
+              "reducer": {"params": [], "type": "last"},
+              "evaluator": {"params": [5], "type": "gt"}
+            }
+          ],
+          "executionErrorState": "alerting",
+          "noDataState": "no_data",
+          "frequency": "10s",
+          "handler": 1
+        }
+      },
+      {
+        "id": 4,
+        "title": "Security Events",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "sum(increase(security_events_total[1h]))",
+            "legendFormat": "Security Alerts"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "thresholds": {
+              "steps": [
+                {"color": "green", "value": null},
+                {"color": "yellow", "value": 1},
+                {"color": "red", "value": 10}
+              ]
+            }
+          }
+        },
+        "gridPos": {"h": 4, "w": 6, "x": 18, "y": 0}
+      },
+      {
+        "id": 5,
+        "title": "Authentication Failures (Last 15 Minutes)",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "increase(auth_failures_total[1m])",
+            "legendFormat": "Failed Auth Attempts"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 4},
+        "alert": {
+          "name": "Authentication Failure Spike",
+          "conditions": [
+            {
+              "query": {"queryType": "", "refId": "A"},
+              "reducer": {"params": [], "type": "sum"},
+              "evaluator": {"params": [20], "type": "gt"}
+            }
+          ],
+          "executionErrorState": "alerting",
+          "noDataState": "no_data",
+          "frequency": "1m",
+          "handler": 1
+        }
+      },
+      {
+        "id": 6,
+        "title": "Log Volume by Category",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "sum by (category) (rate(log_entries_total[5m]))",
+            "legendFormat": "{{category}}"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 4}
+      },
+      {
+        "id": 7,
+        "title": "Recent Error Logs",
+        "type": "logs",
+        "targets": [
+          {
+            "expr": "{level=\"error\"}",
+            "legendFormat": "Error Logs"
+          }
+        ],
+        "gridPos": {"h": 6, "w": 24, "x": 0, "y": 12}
+      }
+    ],
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    }
+  }
+}

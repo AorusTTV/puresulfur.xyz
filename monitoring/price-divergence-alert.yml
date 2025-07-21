@@ -1,0 +1,45 @@
+
+groups:
+- name: pricing_pipeline_alerts
+  rules:
+  - alert: PriceDivergenceDetected
+    expr: |
+      (
+        (store_items_price - store_items_price offset 30m) / store_items_price offset 30m
+      ) * 100 > 20
+    for: 1m
+    labels:
+      severity: critical
+      service: pricing-pipeline
+    annotations:
+      summary: "Price divergence detected for Steam items"
+      description: |
+        Price divergence of >20% detected for item {{ $labels.item_name }}.
+        Current price: ${{ $value }}
+        Previous price: ${{ $labels.previous_price }}
+        This may indicate a Steam market spike or pricing pipeline issue.
+      runbook_url: "https://docs.rustskins.com/runbooks/price-divergence"
+
+  - alert: PricingPipelineFailure
+    expr: increase(pricing_pipeline_errors_total[5m]) > 0
+    for: 1m
+    labels:
+      severity: critical
+      service: pricing-pipeline
+    annotations:
+      summary: "Pricing pipeline errors detected"
+      description: |
+        {{ $value }} pricing pipeline errors detected in the last 5 minutes.
+        Check the update-steam-prices edge function logs for details.
+
+  - alert: PricingUpdateStalled
+    expr: time() - pricing_pipeline_last_run_timestamp > 3600
+    for: 5m
+    labels:
+      severity: warning
+      service: pricing-pipeline
+    annotations:
+      summary: "Pricing updates have stalled"
+      description: |
+        No pricing updates have been processed in over 1 hour.
+        Check if the 30-minute cron job is running properly.

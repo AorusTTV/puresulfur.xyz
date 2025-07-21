@@ -1,0 +1,129 @@
+
+{
+  "dashboard": {
+    "id": null,
+    "title": "Steam Pricing Pipeline Monitoring",
+    "tags": ["pricing", "steam", "monitoring"],
+    "timezone": "UTC",
+    "refresh": "1m",
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "panels": [
+      {
+        "id": 1,
+        "title": "Price Update Success Rate",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "rate(pricing_pipeline_success_total[5m]) / rate(pricing_pipeline_total[5m]) * 100",
+            "legendFormat": "Success Rate %"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "percent",
+            "color": {
+              "mode": "thresholds"
+            },
+            "thresholds": {
+              "steps": [
+                {"color": "red", "value": null},
+                {"color": "yellow", "value": 80},
+                {"color": "green", "value": 95}
+              ]
+            }
+          }
+        },
+        "gridPos": {"h": 4, "w": 6, "x": 0, "y": 0}
+      },
+      {
+        "id": 2,
+        "title": "Price Divergence Alerts (Last 24h)",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "increase(price_divergence_alerts_total[24h])",
+            "legendFormat": "Divergence Alerts"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "thresholds": {
+              "steps": [
+                {"color": "green", "value": null},
+                {"color": "yellow", "value": 1},
+                {"color": "red", "value": 5}
+              ]
+            }
+          }
+        },
+        "gridPos": {"h": 4, "w": 6, "x": 6, "y": 0}
+      },
+      {
+        "id": 3,
+        "title": "Average Price Change Per Update",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "avg(pricing_pipeline_price_change_percent)",
+            "legendFormat": "Avg Price Change %"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 4},
+        "yAxes": [
+          {
+            "unit": "percent",
+            "min": -10,
+            "max": 10
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Items with Highest Price Volatility",
+        "type": "table",
+        "targets": [
+          {
+            "expr": "topk(10, pricing_pipeline_price_volatility_score)",
+            "legendFormat": "{{ item_name }}"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 4}
+      },
+      {
+        "id": 5,
+        "title": "Pipeline Processing Time",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "pricing_pipeline_duration_seconds",
+            "legendFormat": "Processing Duration"
+          }
+        ],
+        "gridPos": {"h": 6, "w": 24, "x": 0, "y": 12},
+        "yAxes": [
+          {
+            "unit": "seconds"
+          }
+        ]
+      }
+    ],
+    "annotations": {
+      "list": [
+        {
+          "name": "Price Divergence Events",
+          "datasource": "Prometheus",
+          "expr": "pricing_pipeline_divergence_events",
+          "iconColor": "red",
+          "titleFormat": "Price Divergence: {{ item_name }}",
+          "textFormat": "{{ description }}"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,68 @@
+
+groups:
+- name: security_alerts
+  rules:
+  - alert: High5xxErrorRate
+    expr: sum(rate(http_requests_total{status=~"5.."}[5m])) / sum(rate(http_requests_total[5m])) * 100 > 5
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: "High 5xx error rate detected"
+      description: "5xx error rate is {{ $value }}% which is above the 5% threshold"
+
+  - alert: AuthenticationFailureSpike
+    expr: increase(auth_failures_total[15m]) > 20
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "High authentication failure rate"
+      description: "{{ $value }} authentication failures in the last 15 minutes"
+
+  - alert: GameEventRateAnomaly
+    expr: rate(game_events_total[5m]) > (avg_over_time(rate(game_events_total[5m])[1h]) * 3)
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Unusual game event rate"
+      description: "Game event rate is 3x higher than normal: {{ $value }} events/sec"
+
+  - alert: SecurityEventDetected
+    expr: increase(security_events_total{severity=~"high|critical"}[5m]) > 0
+    for: 0s
+    labels:
+      severity: critical
+    annotations:
+      summary: "High/Critical security event detected"
+      description: "Security event of high/critical severity has been logged"
+
+  - alert: LogVolumeSpike
+    expr: rate(log_entries_total[5m]) > (avg_over_time(rate(log_entries_total[5m])[1h]) * 5)
+    for: 2m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Log volume spike detected"
+      description: "Log ingestion rate is 5x higher than normal"
+
+- name: application_health
+  rules:
+  - alert: HighResponseTime
+    expr: histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket[5m])) by (le)) > 2
+    for: 2m
+    labels:
+      severity: warning
+    annotations:
+      summary: "High response time"
+      description: "95th percentile response time is {{ $value }}s"
+
+  - alert: DatabaseConnectionFailure
+    expr: db_connections_failed_total > 0
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Database connection failures"
+      description: "Database connection failures detected"
