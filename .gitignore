@@ -1,0 +1,33 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependency directories
+node_modules/
+
+# Environment variables
+.env
+
+# Production build
+dist/
+build/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# IDEs and editors
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# MacOS files
+.DS_Store
+
+# Temp files
+temp/
+temp/*
