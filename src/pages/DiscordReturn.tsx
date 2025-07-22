@@ -13,7 +13,7 @@ const DiscordReturn: React.FC = () => {
 
       if (accessToken) {
         await fetch(
-          "https://sckkxdmwzxayefwvcgic.supabase.co/functions/v1/discort-connect?code=" +
+          "https://sckkxdmwzxayefwvcgic.supabase.co/functions/v1/discort-connect?code=" + //todo move to .env
             code +
             "&access_token=Bearer " +
             accessToken,
@@ -25,7 +25,7 @@ const DiscordReturn: React.FC = () => {
     connectWithDiscord();
   }, []);
 
-  return <div>{111}</div>;
+  return <div>{}</div>;
 };
 
 export default DiscordReturn;
