@@ -76,7 +76,7 @@ export const SocialAccountsSection: React.FC = () => {
     if (platform === "discord") {
       const CLIENT_ID = "1380396404081561610"; //todo move to env
       const REDIRECT_URI = encodeURIComponent(
-        "https://sckkxdmwzxayefwvcgic.supabase.co/functions/v1/discort-connect" //todo move to env
+        "http://localhost:3000/auth/discord/return" //todo move to env
       );
       const DISCORD_AUTH_URL = `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=identify%20email%20guilds`;
 

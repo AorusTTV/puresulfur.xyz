@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -32,12 +31,18 @@ import RedeemCodePage from "./pages/RedeemCodePage";
 import NotFound from "./pages/NotFound";
 import Admin from "./pages/Admin";
 import AdminDashboard from "./pages/admin/Dashboard";
+import DiscordReturn from "./pages/DiscordReturn";
+
 import "./App.css";
 
 const queryClient = new QueryClient();
 
 // Component to initialize notification listeners
-const NotificationListenersProvider = ({ children }: { children: React.ReactNode }) => {
+const NotificationListenersProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   useNotificationListeners();
   return <>{children}</>;
 };
@@ -58,32 +63,69 @@ function App() {
                       <NotificationProvider>
                         <NotificationListenersProvider>
                           <CartProvider>
-                          <ComplianceWrapper>
-                            <div className="min-h-screen bg-background">
-                              <Navigation />
-                              <MaintenanceWrapper>
-                                <BanGuard>
-                                  <Routes>
-                                    <Route path="/" element={<Index />} />
-                                    <Route path="/store" element={<Store />} />
-                                    <Route path="/games" element={<Games />} />
-                                    <Route path="/inventory" element={<Inventory />} />
-                                    <Route path="/leaderboards" element={<Leaderboards />} />
-                                    <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/affiliate" element={<Affiliate />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/redeem" element={<RedeemCodePage />} />
-            <Route path="/site-policies" element={<SitePoliciesPage />} />
-                                    <Route path="/admin" element={<Admin />} />
-                                    <Route path="/admin/dashboard" element={<AdminDashboard />} />
-                                    <Route path="*" element={<NotFound />} />
-                                  </Routes>
-                                  <FixedChatToggle />
-                                  <NotificationContainer />
-                                </BanGuard>
-                              </MaintenanceWrapper>
-                            </div>
-                          </ComplianceWrapper>
+                            <ComplianceWrapper>
+                              <div className="min-h-screen bg-background">
+                                <Navigation />
+                                <MaintenanceWrapper>
+                                  <BanGuard>
+                                    <Routes>
+                                      <Route path="/" element={<Index />} />
+                                      <Route
+                                        path="/store"
+                                        element={<Store />}
+                                      />
+                                      <Route
+                                        path="/games"
+                                        element={<Games />}
+                                      />
+                                      <Route
+                                        path="/inventory"
+                                        element={<Inventory />}
+                                      />
+                                      <Route
+                                        path="/leaderboards"
+                                        element={<Leaderboards />}
+                                      />
+                                      <Route
+                                        path="/profile"
+                                        element={<ProfilePage />}
+                                      />
+                                      <Route
+                                        path="/affiliate"
+                                        element={<Affiliate />}
+                                      />
+                                      <Route
+                                        path="/settings"
+                                        element={<Settings />}
+                                      />
+                                      <Route
+                                        path="/redeem"
+                                        element={<RedeemCodePage />}
+                                      />
+                                      <Route
+                                        path="/site-policies"
+                                        element={<SitePoliciesPage />}
+                                      />
+                                      <Route
+                                        path="/admin"
+                                        element={<Admin />}
+                                      />
+                                      <Route
+                                        path="/admin/dashboard"
+                                        element={<AdminDashboard />}
+                                      />
+                                      <Route
+                                        path="/auth/discord/return"
+                                        element={<DiscordReturn />}
+                                      />
+                                      <Route path="*" element={<NotFound />} />
+                                    </Routes>
+                                    <FixedChatToggle />
+                                    <NotificationContainer />
+                                  </BanGuard>
+                                </MaintenanceWrapper>
+                              </div>
+                            </ComplianceWrapper>
                           </CartProvider>
                         </NotificationListenersProvider>
                       </NotificationProvider>
