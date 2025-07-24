@@ -7,6 +7,8 @@ const DiscordReturn: React.FC = () => {
     const connectWithDiscord = async () => {
       const url = new URL(window.location.href);
       const code = url.searchParams.get("code");
+      const redirectUrl = `${window.location.origin}/auth/discord/return`;
+
       console.log("DiscordReturn code:", code);
 
       const { data } = await supabase.auth.getSession();
@@ -17,7 +19,9 @@ const DiscordReturn: React.FC = () => {
           "https://sckkxdmwzxayefwvcgic.supabase.co/functions/v1/discort-connect?code=" + //todo move to .env
             code +
             "&access_token=Bearer " +
-            accessToken,
+            accessToken +
+            "&redirect_url=" +
+            redirectUrl,
           {}
         );
       }
